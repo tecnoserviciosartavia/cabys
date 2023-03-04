@@ -13,6 +13,6 @@ class CabysCategoria7(models.Model):
     name   = fields.Char('Categoria 8', readonly=True)
     codigo = fields.Char('Código', readonly=True)
 
-    cabys_categoria6_id = fields.Many2one(comodel_name='cabys.categoria7', readonly=True)
+    cabys_categoria7_id = fields.Many2one(comodel_name='cabys.categoria7', readonly=True)
     cabys_categoria9_ids = fields.One2many('cabys.categoria9', 'cabys_categoria8_id', string='Categorías 9', readonly=True)
 
