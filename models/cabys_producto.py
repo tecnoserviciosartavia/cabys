@@ -14,7 +14,8 @@ class CabysProducto(models.Model):
     codigo   = fields.Char('Código Cabys', readonly=True)
     impuesto = fields.Float('Impuesto', digits=(12, 2), readonly=True)
 
-    cabys_categoria8_id = fields.Many2one(comodel_name='cabys.categoria8', string='Categoría 8', readonly=True)
+    cabys_categoria9_id = fields.Many2one(comodel_name='cabys.categoria9', string='Categoría 9', readonly=True)
+    cabys_categoria8_id = fields.Many2one(related='cabys_categoria9_id.cabys_categoria8_id', string='Categoría 8', readonly=True)
     cabys_categoria7_id = fields.Many2one(related='cabys_categoria8_id.cabys_categoria7_id', string='Categoría 7', readonly=True)
     cabys_categoria6_id = fields.Many2one(related='cabys_categoria7_id.cabys_categoria6_id', string='Categoría 6', readonly=True)
     cabys_categoria5_id = fields.Many2one(related='cabys_categoria6_id.cabys_categoria5_id', string='Categoría 5', readonly=True)
@@ -30,12 +31,12 @@ class CabysProducto(models.Model):
     _sql_constraints = [('codigo_uniq', 'unique (codigo)', 'Ya existe un registro con el mismo código.'),]
 
     @api.multi
-    @api.depends('name', 'codigo', 'cabys_categoria8_id', 'cabys_categoria7_id', 'cabys_categoria6_id', 'cabys_categoria5_id')
+    @api.depends('name', 'codigo', 'cabys_categoria9_id', 'cabys_categoria8_id', 'cabys_categoria7_id', 'cabys_categoria6_id')
     def name_get(self):
         result = []
         for product in self:
             # get all category names
-            categories = [product.cabys_categoria8_id.name, product.cabys_categoria7_id.name,product.cabys_categoria6_id.name, product.cabys_categoria5_id.name]
+            categories = [product.cabys_categoria9_id.name, product.cabys_categoria8_id.name,product.cabys_categoria7_id.name, product.cabys_categoria6_id.name]
             # eliminate duplicated strings
             categories = list(set(categories))
             # join category names
@@ -55,7 +56,7 @@ class CabysProducto(models.Model):
         # search in name, codigo and categories
         domain = args + ['|', ('name', operator, name), 
                             '|', ('codigo', operator, name), 
-                                '|', ('cabys_categoria8_id.name', operator, name), 
-                                    '|', ('cabys_categoria7_id.name', operator, name), 
-                                             ('cabys_categoria6_id.name', operator, name)]
+                                '|', ('cabys_categoria9_id.name', operator, name), 
+                                    '|', ('cabys_categoria8_id.name', operator, name), 
+                                             ('cabys_categoria7_id.name', operator, name)]
         return super(CabysProducto, self).search(domain, limit=limit).name_get()

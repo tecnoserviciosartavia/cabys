@@ -19,7 +19,8 @@ categories_map = [  {'category': '1', 'code': 0,  'description': 1              
                     {'category': '5', 'code': 8,  'description': 9,  'subcategory': 6},
                     {'category': '6', 'code': 10, 'description': 11, 'subcategory': 8},
                     {'category': '7', 'code': 12, 'description': 13, 'subcategory': 10},
-                    {'category': '8', 'code': 14, 'description': 15, 'subcategory': 12}]
+                    {'category': '8', 'code': 14, 'description': 15, 'subcategory': 12},
+                    {'category': '9', 'code': 16, 'description': 17, 'subcategory': 14}]
 # Cabys product description, code, tax and category
 products_map = {'category': 14, 'code': 16, 'description': 17, 'tax': 18}
 # Expected header titles for data columns
@@ -32,8 +33,8 @@ headers_map = [ {'column':0,  'header': 'Categoría 1'},  {'column':1,  'header'
                 {'column':10, 'header': 'Categoría 6'},  {'column':11, 'header': 'Descripción (categoría 6)'},
                 {'column':12, 'header': 'Categoría 7'},  {'column':13, 'header': 'Descripción (categoría 7)'},
                 {'column':14, 'header': 'Categoría 8'},  {'column':15, 'header': 'Descripción (categoría 8)'},
-                {'column':16, 'header': 'Código del bien o servicio'},
-                {'column':17, 'header': 'Descripción del bien o servicio'},
+                {'column':16, 'header': 'Categoría 9'},
+                {'column':17, 'header': 'Descripción (categoría 9)'},
                 {'column':18, 'header': 'Impuesto'}]
 
 
@@ -151,7 +152,7 @@ class CabysCatalogImportWizard(models.TransientModel):
             for code in all_products:
                 # get record data
                 product = all_products[code]
-                product['cabys_categoria8_id'] = all_categories['8'][product['cabys_categoria8_id']]['id']
+                product['cabys_categoria9_id'] = all_categories['9'][product['cabys_categoria9_id']]['id']
                 # search record
                 record_id = self.env['cabys.producto'].search([('codigo', '=', code)])
                 # if it exist, check differences
@@ -159,8 +160,8 @@ class CabysCatalogImportWizard(models.TransientModel):
                     vals = {}
                     if record_id.name != product['name']:
                         vals['name'] = product['name']
-                    if record_id.cabys_categoria8_id.id != product['cabys_categoria8_id']:
-                        vals['cabys_categoria8_id'] = product['cabys_categoria8_id']
+                    if record_id.cabys_categoria9_id.id != product['cabys_categoria9_id']:
+                        vals['cabys_categoria9_id'] = product['cabys_categoria9_id']
                     if record_id.impuesto != product['impuesto']:
                         vals['impuesto'] = product['impuesto']
                     # if there are changes, update the record
@@ -278,7 +279,7 @@ class CabysCatalogImportWizard(models.TransientModel):
             for row in rows:
                 # get product data
                 code = row[products_map['code']].value
-                cabys_categoria8_id = row[products_map['category']].value
+                cabys_categoria9_id = row[products_map['category']].value
                 name = row[products_map['description']].value
                 impuesto = 0.0 if row[products_map['tax']].value in ('Exento', 'na') else float(row[products_map['tax']].value[:-1]) 
                 
@@ -289,7 +290,7 @@ class CabysCatalogImportWizard(models.TransientModel):
                 # if record exist and its values are different, it should be updated
                 if record_id:
                     if record_id.name != name or \
-                       record_id.cabys_categoria8_id.codigo != cabys_categoria8_id or \
+                       record_id.cabys_categoria9_id.codigo != cabys_categoria9_id or \
                        record_id.impuesto != impuesto:
                        products_updated.append(code)
                 # if record doesn't exist, it should be created
