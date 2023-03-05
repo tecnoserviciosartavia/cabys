@@ -22,7 +22,7 @@ categories_map = [  {'category': '1', 'code': 0,  'description': 1              
                     {'category': '8', 'code': 14, 'description': 15, 'subcategory': 12},
                     {'category': '9', 'code': 16, 'description': 17, 'subcategory': 14}]
 # Cabys product description, code, tax and category
-products_map = {'category': 14, 'code': 16, 'description': 17, 'tax': 19}
+products_map = {'category': 14, 'code': 16, 'description': 17, 'tax': 18}
 # Expected header titles for data columns
 # we'll use this to check if the catalog file is a correct catalog cabys file
 headers_map = [ {'column':0,  'header': 'Categoría 1'},  {'column':1,  'header': 'Descripción (categoría 1)'},
@@ -33,7 +33,8 @@ headers_map = [ {'column':0,  'header': 'Categoría 1'},  {'column':1,  'header'
                 {'column':10, 'header': 'Categoría 6'},  {'column':11, 'header': 'Descripción (categoría 6)'},
                 {'column':12, 'header': 'Categoría 7'},  {'column':13, 'header': 'Descripción (categoría 7)'},
                 {'column':14, 'header': 'Categoría 8'},  {'column':15, 'header': 'Descripción (categoría 8)'},
-                {'column':16, 'header': 'Categoría 9'},  {'column':17, 'header': 'Descripción (categoría 9)'},
+                {'column':16, 'header': 'Categoría 9'}, 
+				{'column':17, 'header': 'Descripción (categoría 9)'},
                 {'column':18, 'header': 'Impuesto'}]
 
 
@@ -44,7 +45,7 @@ class CabysCatalogImportWizard(models.TransientModel):
     cabys_excel_file = fields.Binary(string='Archivo de Excel', copy=False, attachment=True)
     notes = fields.Text("Descripción", readonly=True)
     button_enable = fields.Boolean()
-    file_url = fields.Char(default='https://activos.bccr.fi.cr/sitios/bccr/indicadoreseconomicos/cabys/Catalogo-de-bienes-servicios.xlsx')
+    file_url = fields.Char(default='https://www.bccr.fi.cr/indicadores-economicos/cabys/Cabys_catalogo_historial_de_cambios.xlsx')
 
     def download_catalog(self):
         ''' Download the Cabys catalog Excel file from BCCR.
