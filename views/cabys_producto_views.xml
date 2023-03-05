@@ -10,7 +10,6 @@
 				<field name="codigo"/>
 				<field name="name"/>
 				<field name="impuesto"/>
-				<field name="cabys_categoria9_id"/>
 				<field name="cabys_categoria8_id"/>
 				<field name="cabys_categoria7_id"/>
 				<field name="cabys_categoria6_id"/>
@@ -35,8 +34,7 @@
                     <field name="impuesto"/>
                 </group>
                 <group col="4">
-                    <field name="cabys_categoria9_id"/>
-					<field name="cabys_categoria8_id"/>
+                    <field name="cabys_categoria8_id"/>
 					<field name="cabys_categoria7_id"/>
 					<field name="cabys_categoria6_id"/>
 					<field name="cabys_categoria5_id"/>
@@ -71,7 +69,6 @@
 		<field name="arch" type="xml">
 			<search string="cursos">
 				<field name='name' string='Buscar en el catálogo Cabys' filter_domain="['|','|','|','|',('codigo','ilike',self),('name','ilike',self),('cabys_categoria8_id.name','ilike',self),('cabys_categoria7_id.name','ilike',self),('cabys_categoria6_id.name','ilike',self)]"/>
-				<field name="cabys_categoria9_id"/>
 				<field name="cabys_categoria8_id"/>
 				<field name='cabys_categoria7_id'/>
 				<field name='cabys_categoria6_id'/>

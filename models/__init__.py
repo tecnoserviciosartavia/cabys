@@ -9,7 +9,6 @@ from . import cabys_categoria5
 from . import cabys_categoria6
 from . import cabys_categoria7
 from . import cabys_categoria8
-from . import cabys_categoria9
 from . import cabys_producto
 from . import product_template
 from . import product_category
