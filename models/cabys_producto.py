@@ -10,8 +10,8 @@ class CabysProducto(models.Model):
     _name = 'cabys.producto'
     _description = 'Catálogo de bienes y servicios (Cabys)'
 
-    name     = fields.Char('Descripción del bien o servicio', readonly=True)
-    codigo   = fields.Char('Código Cabys', readonly=True)
+    name     = fields.Char('Descripción (categoría 9)', readonly=True)
+    codigo   = fields.Char('Categoría 9', readonly=True)
     impuesto = fields.Float('Impuesto', digits=(12, 2), readonly=True)
 
     cabys_categoria8_id = fields.Many2one(comodel_name='cabys.categoria8', string='Categoría 8', readonly=True)
