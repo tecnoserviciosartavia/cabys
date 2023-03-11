@@ -36,7 +36,7 @@ headers_map = [ {'column':0,  'header': 'Categoría 1'},  {'column':1,  'header'
                 {'column':17, 'header': 'Descripción (categoría 9)'},
                 {'column':18, 'header': 'Impuesto'},
                 {'column':19, 'header': 'Nota explicativa 1. Incluye'},
-                {'column':19, 'header': 'Nota explicativa 2. Excluye'},]
+                {'column':20, 'header': 'Nota explicativa 2. Excluye'},]
 
 
 class CabysCatalogImportWizard(models.TransientModel):
