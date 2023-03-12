@@ -32,10 +32,8 @@ headers_map = [ {'column':0,  'header': 'Categoría 1'},  {'column':1,  'header'
                 {'column':10, 'header': 'Categoría 6'},  {'column':11, 'header': 'Descripción (categoría 6)'},
                 {'column':12, 'header': 'Categoría 7'},  {'column':13, 'header': 'Descripción (categoría 7)'},
                 {'column':14, 'header': 'Categoría 8'},  {'column':15, 'header': 'Descripción (categoría 8)'},
-                {'column':16, 'header': 'Categoría 9'},
-                {'column':17, 'header': 'Descripción (categoría 9)'},
-                {'column':18, 'header': 'Impuesto'},
-                {'column':19, 'header': 'Nota explicativa 1. Incluye'},
+                {'column':16, 'header': 'Categoría 9'},  {'column':17, 'header': 'Descripción (categoría 9)'},
+                {'column':18, 'header': 'Impuesto'},     {'column':19, 'header': 'Nota explicativa 1. Incluye'},
                 {'column':20, 'header': 'Nota explicativa 2. Excluye'},]
 
 
