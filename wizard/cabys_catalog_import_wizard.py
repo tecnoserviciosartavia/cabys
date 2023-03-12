@@ -118,7 +118,7 @@ class CabysCatalogImportWizard(models.TransientModel):
                 category = row[products_map['category']].value
                 description = row[products_map['description']].value
                 code = row[products_map['code']].value
-                tax = 0.0 if row[products_map['tax']].value in ('Exento', 'na') else float(row[products_map['tax']].value[:-1]) 
+                tax = 0.0 if row[products_map['tax']].value in ('Exento', 'na') else str(row[products_map['tax']].value[:-1]) 
                 all_products[code] = {'name': description, 'codigo': code, 'impuesto': tax, 'cabys_categoria8_id': category}
 
             # sort categories in order to process them orderly
