@@ -280,7 +280,7 @@ class CabysCatalogImportWizard(models.TransientModel):
                 code = row[products_map['code']].value
                 cabys_categoria8_id = row[products_map['category']].value
                 name = row[products_map['description']].value
-                impuesto = 0.0 if row[products_map['tax']].value in ('Exento', 'na') else float(row[products_map['tax']].value[:-1]) 
+                impuesto = 0.0 if row[products_map['tax']].value in ('Exento', 'na') else str(row[products_map['tax']].value[:-1]) 
                 
                 products_codes.append(code)
 
